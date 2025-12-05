@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Simple HTML Page</title>
+  <style>
+    :root {
+      --bg: #f6f7fb;
+      --card: #ffffff;
+      --accent: #2563eb;
+      --muted: #6b7280;
+      --radius: 12px;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    }
+    body {
+      margin: 0;
+      padding: 32px;
+      background: linear-gradient(180deg, var(--bg), #ffffff 60%);
+      color: #111827;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+    .card {
+      background: var(--card);
+      border-radius: var(--radius);
+      box-shadow: 0 6px 20px rgba(16,24,40,0.08);
+      padding: 20px;
+      max-width: 720px;
+      width: 100%;
+    }
+    h1 { margin: 0 0 6px 0; font-size: 1.6rem; }
+    p { margin: 0 0 12px 0; color: var(--muted); line-height: 1.5; }
+    ul { margin: 8px 0 16px 20px; color: var(--muted); }
+    .btn {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 8px;
+      background: var(--accent);
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      font-weight: 600;
+    }
+    .small { font-size: 0.9rem; color: var(--muted); margin-top: 12px; }
+    footer { margin-top: 18px; font-size: 0.85rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <main class="card" role="main">
+    <h1>Welcome — Simple HTML Demo</h1>
+    <p>This is a minimal, self-contained HTML file with a little styling and a tiny JavaScript interaction.</p>
+
+    <ul>
+      <li>Semantic HTML structure</li>
+      <li>Responsive via viewport meta</li>
+      <li>Accessible button with JS</li>
+    </ul>
+
+    <button class="btn" id="surpriseBtn">Click me!</button>
+    <p class="small" id="message" aria-live="polite"></p>
+
+    <footer>
+      Tip: open your browser console (F12) to see a message from JavaScript.
+    </footer>
+  </main>
+
+  <script>
+    const btn = document.getElementById('surpriseBtn');
+    const msg = document.getElementById('message');
+
+    btn.addEventListener('click', () => {
+      const now = new Date();
+      msg.textContent = `Hello! You clicked at ${now.toLocaleTimeString()}.`;
+      console.log('Button clicked at', now.toISOString());
+      btn.textContent = 'Clicked!';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = 'Click me!';
+        btn.disabled = false;
+        msg.textContent = '';
+      }, 2200);
+    });
+  </script>
+</body>
+</html>
